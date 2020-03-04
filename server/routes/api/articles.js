@@ -44,7 +44,7 @@ router.get('/', (req, res, next) => {
     .catch(next);
 });
 
-//will run only for id if the id is in the route. Check that an article of that id exists
+//Validate id parameter: Check that an article of that id exists
 //necessary for the funtions below to work as intended.
 router.param('id', (req, res, next, id) => {
   return Articles.findById(id, (err, article) => {
