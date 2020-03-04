@@ -1,3 +1,4 @@
+//set up required node modules
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -7,9 +8,9 @@ const errorHandler = require('errorhandler');
 const mongoose = require('mongoose');
 
 mongoose.promise = global.Promise;
-
+//set envorionment to production
 const isProduction = process.env.NODE_ENV === 'production';
-
+//initilize express app
 const app = express();
 
 app.use(cors());
@@ -20,9 +21,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({ secret: 'LightBlog', cookie: { maxAge: 60000 }, resave: false, saveUninitialized: false }));
 
 if(!isProduction) {
+  //only use this in dev mode
   app.use(errorHandler());
 }
 
+//connect to db
 mongoose.connect('mongodb://localhost/lightblog');
 mongoose.set('debug', true);
 
@@ -31,7 +34,10 @@ require('./models/Articles');
 // Add routes
 app.use(require('./routes'));
 
+
+//error messages
 app.use((req, res, next) => {
+  console.log("404 error");
   const err = new Error('Not Found');
   err.status = 404;
   next(err);
