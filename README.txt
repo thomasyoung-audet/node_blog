@@ -1,5 +1,4 @@
-Blog made in React/Node
+Side project to familiarize myself with web technologies.
 
-Side project to familiarize myself with these web technologies.
-
+Blog made using Node, React, Express and Redux.
 
