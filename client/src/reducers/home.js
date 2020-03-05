@@ -5,6 +5,11 @@ export default (state={articles: []}, action) => {
         ...state,
         articles: action.data.articles,
       };
+    case 'SUBMIT_ARTICLE':
+      return {
+        ...state,
+        articles: ([action.data.article]).concat(state.articles),
+      }
     default:
       return state;
   }
