@@ -31,6 +31,7 @@ router.post('/', (req, res, next) => {
   }
 
   const finalArticle = new Articles(body);
+  console.log("posted article");
   return finalArticle.save()
     .then(() => res.json({ article: finalArticle.toJSON() }))
     .catch(next);
